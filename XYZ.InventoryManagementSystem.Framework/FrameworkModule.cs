@@ -20,7 +20,7 @@ namespace XYZ.InventoryManagementSystem.Framework
                  .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                  .InstancePerLifetimeScope();
 
-
+          
             base.Load(builder);
         }
     }

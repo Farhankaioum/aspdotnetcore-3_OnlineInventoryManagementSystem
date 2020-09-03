@@ -1,0 +1,34 @@
+﻿@model List<BrandIndexViewModel>
+@{
+    
+}
+
+<h2>Brand Index Page</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var brand in Model)
+            {
+                var status = brand.Status ? "Active" : "Inactive";
+                <td>@brand.Name</td>
+                <td>@status</td>
+                <td>
+                    <a asp-action="Edit" asp-route-Id="@brand.Id" class="btn btn-primary">Edit</a>
+                    <form method="post" asp-action="Delete">
+                        <button type="submit" asp-route-id="@brand.Id" onclick="confirm()">Delete</button>
+                    </form>
+
+                </td>
+            }
+        </tr>
+    </tbody>
+   
+</table>

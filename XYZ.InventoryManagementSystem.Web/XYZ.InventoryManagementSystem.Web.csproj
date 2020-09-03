@@ -22,4 +22,8 @@
     <ProjectReference Include="..\XYZ.InventoryManagementSystem.Framework\XYZ.InventoryManagementSystem.Framework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+  </ItemGroup>
+
 </Project>

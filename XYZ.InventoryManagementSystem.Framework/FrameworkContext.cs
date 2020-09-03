@@ -29,5 +29,7 @@ namespace XYZ.InventoryManagementSystem.Framework
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Brand> Brands { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Linq.Dynamic.Core;
 
 namespace XYZ.InventoryManagementSystem.Data
 {
-    public abstract class Repository<TEntity, Tkey, TContext>
+    public class Repository<TEntity, Tkey, TContext>
         : IRepository<TEntity, Tkey, TContext>
         where TEntity : class, IEntity<Tkey>
         where TContext : DbContext
