@@ -31,5 +31,6 @@ namespace XYZ.InventoryManagementSystem.Framework
         }
 
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
