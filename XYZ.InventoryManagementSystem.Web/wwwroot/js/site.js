@@ -21,7 +21,6 @@ jQueryAjaxPost = (form) => {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-
                     $('#viewAll').html(res.html);
                     $('#form-modal .modal-body').html('');
                     $('#form-modal .modal-title').html('');

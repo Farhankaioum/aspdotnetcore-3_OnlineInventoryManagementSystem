@@ -1,0 +1,16 @@
+﻿@model IEnumerable<XYZ.InventoryManagementSystem.Framework.Attribute>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-dark mb-2">Attribute List</h2>
+
+<p>
+    <a onclick="showInPopUp('@Url.Action("AddOrEdit", "Attributes", null, Context.Request.Scheme)', 'New Attribute')" 
+      class="btn btn-info text-white">New Attribute</a>
+</p>
+<div id="view-all">
+    <partial name="~/Areas/Admin/Views/Attributes/_ViewAll.cshtml" model="@Model" />
+</div>
+
