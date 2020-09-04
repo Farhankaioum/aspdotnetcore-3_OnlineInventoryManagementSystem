@@ -1,0 +1,36 @@
+﻿@model List<XYZ.InventoryManagementSystem.Framework.Store>
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Active Status</th>
+            <th>Action</th>
+            <th>
+                <a onclick="showInPopUp('@Url.Action("Create", "Store", null, Context.Request.Scheme)', 'New Store')" class="btn btn-success tex">
+                    <i class="fas fa-random"></i> New Store
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var store in Model)
+        {
+            <tr>
+                <td>@store.Name</td>
+                <td>@store.Status</td>
+                <td>
+                    <a asp-action="Edit" asp-route-Id="@store.Id" class="btn btn-primary">Edit</a>
+
+
+                    <form method="post" asp-action="Delete" asp-route-id="@store.Id">
+                        <button type="submit" onclick="confirm()" class="btn btn-danger float-right">Delete</button>
+                    </form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
