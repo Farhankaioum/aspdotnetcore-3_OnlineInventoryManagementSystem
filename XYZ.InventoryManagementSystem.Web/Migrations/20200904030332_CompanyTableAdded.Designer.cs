@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XYZ.InventoryManagementSystem.Framework;
 
 namespace XYZ.InventoryManagementSystem.Web.Migrations
 {
     [DbContext(typeof(FrameworkContext))]
-    partial class FrameworkContextModelSnapshot : ModelSnapshot
+    [Migration("20200904030332_CompanyTableAdded")]
+    partial class CompanyTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
