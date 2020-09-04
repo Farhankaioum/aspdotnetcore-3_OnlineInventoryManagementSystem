@@ -35,5 +35,6 @@ namespace XYZ.InventoryManagementSystem.Framework
         public DbSet<Store> Stores { get; set; }
         public DbSet<Attribute> Attributes { get; set; }
         public DbSet<Color> Colors { get; set; }
+        public DbSet<Size> Sizes { get; set; }
     }
 }
