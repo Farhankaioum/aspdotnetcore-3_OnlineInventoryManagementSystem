@@ -1,0 +1,82 @@
+﻿@model ProductAddViewModel
+
+@{
+
+}
+
+<h2>Add New Product</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Qty"></label>
+        <input asp-for="Qty" class="form-control" />
+        <span asp-validation-for="Qty" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="Available" class="form-check-input" />
+        <label asp-for="Available" class="form-check-label"></label>
+    </div>
+    <div class="form-group">
+        <label>Brands</label>
+        <select asp-for="BrandId" asp-items="@(new SelectList(Model.Brands, "Id", "Name"))" class="form-control">
+            <option value="0">Please select</option>
+        </select>
+        <span asp-validation-for="BrandId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control">
+            <option value="0">Please select</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Colors</label>
+        <select multiple="multiple" asp-for="ColorIds"  asp-items="@(new SelectList(Model.Colors, "Id", "Name"))" class="form-control">
+            <option value="0">Please select</option>
+        </select>
+        <span asp-validation-for="ColorIds" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Sizes</label>
+        <select multiple="multiple" asp-for="SizeIds" asp-items="@(new SelectList(Model.Sizes, "Id", "Name"))" class="form-control">
+            <option value="0">Please select</option>
+        </select>
+        <span asp-validation-for="SizeIds" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Store</label>
+        <select multiple="multiple" asp-for="StoreIds" asp-items="@(new SelectList(Model.Stores, "Id", "Name"))" class="form-control">
+            <option value="0">Please select</option>
+        </select>
+        <span asp-validation-for="StoreIds" class="text-danger"></span>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-link">Back to List</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
