@@ -27,5 +27,7 @@ namespace XYZ.InventoryManagementSystem.Framework
 
         public List<ProductSize> ProductSizes { get; set; }
 
+        public List<ProductStore> ProductStores { get; set; }
+
     }
 }

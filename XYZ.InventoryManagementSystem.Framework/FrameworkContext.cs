@@ -69,6 +69,24 @@ namespace XYZ.InventoryManagementSystem.Framework
                 .WithMany(ps => ps.ProductSizes)
                 .HasForeignKey(s => s.SizeId);
 
+            // Many to many relation between Product to Store
+            modelBuilder.Entity<ProductStore>()
+                .HasKey(ps => new { ps.ProductId, ps.StoreId});
+
+            modelBuilder.Entity<ProductStore>()
+                .HasOne(p => p.Product)
+                .WithMany(ps => ps.ProductStores)
+                .HasForeignKey(p => p.ProductId);
+
+            modelBuilder.Entity<ProductStore>()
+                .HasOne(s => s.Store)
+                .WithMany(ps => ps.ProductStores)
+                .HasForeignKey(s => s.StoreId);
+
+            // Store 
+            modelBuilder.Entity<Store>()
+                .Property(s => s.Name)
+                .IsRequired();
             base.OnModelCreating(modelBuilder);
         }
 

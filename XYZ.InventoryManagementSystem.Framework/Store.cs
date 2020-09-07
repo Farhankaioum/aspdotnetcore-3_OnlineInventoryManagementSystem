@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using XYZ.InventoryManagementSystem.Framework.MidTable;
 
 namespace XYZ.InventoryManagementSystem.Framework
 {
@@ -8,10 +8,10 @@ namespace XYZ.InventoryManagementSystem.Framework
     {
         public int Id { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         public bool Status { get; set; }
 
+        public List<ProductStore> ProductStores { get; set; }
     }
 }
