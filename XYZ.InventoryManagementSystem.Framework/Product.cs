@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using XYZ.InventoryManagementSystem.Framework.MidTable;
 
 namespace XYZ.InventoryManagementSystem.Framework
 {
@@ -15,5 +16,8 @@ namespace XYZ.InventoryManagementSystem.Framework
         public string Description { get; set; }
 
         public bool Available { get; set; }
+
+        public List<ProductColor> ProductColor { get; set; }
+
     }
 }

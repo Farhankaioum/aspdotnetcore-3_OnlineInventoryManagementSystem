@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using XYZ.InventoryManagementSystem.Framework.MidTable;
 
 namespace XYZ.InventoryManagementSystem.Framework
 {
@@ -34,7 +35,19 @@ namespace XYZ.InventoryManagementSystem.Framework
             modelBuilder.Entity<Product>().Property(p => p.Description)
                 .IsRequired();
 
-            
+            // many to many relationship to Product and Color table
+            modelBuilder.Entity<ProductColor>()
+                .HasKey(t => new { t.ProductId, t.ColorId });
+
+            modelBuilder.Entity<ProductColor>()
+                .HasOne(p => p.Product)
+                .WithMany(pc => pc.ProductColor)
+                .HasForeignKey(p => p.ProductId);
+
+            modelBuilder.Entity<ProductColor>()
+                .HasOne(c => c.Color)
+                .WithMany(p => p.ProductColor)
+                .HasForeignKey(p => p.ColorId);
 
 
             base.OnModelCreating(modelBuilder);
