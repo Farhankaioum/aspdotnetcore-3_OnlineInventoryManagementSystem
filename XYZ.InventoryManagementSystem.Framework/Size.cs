@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using XYZ.InventoryManagementSystem.Framework.MidTable;
 
 namespace XYZ.InventoryManagementSystem.Framework
 {
@@ -8,5 +8,6 @@ namespace XYZ.InventoryManagementSystem.Framework
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public List<ProductSize> ProductSizes { get; set; }
     }
 }

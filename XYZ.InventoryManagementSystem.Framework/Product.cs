@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using XYZ.InventoryManagementSystem.Framework.MidTable;
 
@@ -17,7 +16,16 @@ namespace XYZ.InventoryManagementSystem.Framework
 
         public bool Available { get; set; }
 
+        public Brand Brand { get; set; }
+        public int BrandId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public Category Category { get; set; }
+        public int CategoryId { get; set; }
+
         public List<ProductColor> ProductColor { get; set; }
+
+        public List<ProductSize> ProductSizes { get; set; }
 
     }
 }

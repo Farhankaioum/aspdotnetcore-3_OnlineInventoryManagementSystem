@@ -49,6 +49,25 @@ namespace XYZ.InventoryManagementSystem.Framework
                 .WithMany(p => p.ProductColor)
                 .HasForeignKey(p => p.ColorId);
 
+            // One to many relationship Product to Brand
+            modelBuilder.Entity<Product>()
+                .HasOne(b => b.Brand)
+                .WithMany(p => p.Products)
+                .HasForeignKey(p => p.BrandId);
+
+            // Many to many relationship Product to Size
+            modelBuilder.Entity<ProductSize>()
+                .HasKey(t => new { t.ProductId, t.SizeId });
+
+            modelBuilder.Entity<ProductSize>()
+                .HasOne(p => p.Product)
+                .WithMany(s => s.ProductSizes)
+                .HasForeignKey(p => p.ProductId);
+
+            modelBuilder.Entity<ProductSize>()
+                .HasOne(s => s.Size)
+                .WithMany(ps => ps.ProductSizes)
+                .HasForeignKey(s => s.SizeId);
 
             base.OnModelCreating(modelBuilder);
         }

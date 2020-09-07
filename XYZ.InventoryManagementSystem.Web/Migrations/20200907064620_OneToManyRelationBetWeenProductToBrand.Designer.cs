@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XYZ.InventoryManagementSystem.Framework;
 
 namespace XYZ.InventoryManagementSystem.Web.Migrations
 {
     [DbContext(typeof(FrameworkContext))]
-    partial class FrameworkContextModelSnapshot : ModelSnapshot
+    [Migration("20200907064620_OneToManyRelationBetWeenProductToBrand")]
+    partial class OneToManyRelationBetWeenProductToBrand
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,6 +48,9 @@ namespace XYZ.InventoryManagementSystem.Web.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -145,21 +150,6 @@ namespace XYZ.InventoryManagementSystem.Web.Migrations
                     b.ToTable("ProductColor");
                 });
 
-            modelBuilder.Entity("XYZ.InventoryManagementSystem.Framework.MidTable.ProductSize", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SizeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "SizeId");
-
-                    b.HasIndex("SizeId");
-
-                    b.ToTable("ProductSize");
-                });
-
             modelBuilder.Entity("XYZ.InventoryManagementSystem.Framework.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -171,9 +161,6 @@ namespace XYZ.InventoryManagementSystem.Web.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -189,8 +176,6 @@ namespace XYZ.InventoryManagementSystem.Web.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -244,32 +229,11 @@ namespace XYZ.InventoryManagementSystem.Web.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("XYZ.InventoryManagementSystem.Framework.MidTable.ProductSize", b =>
-                {
-                    b.HasOne("XYZ.InventoryManagementSystem.Framework.Product", "Product")
-                        .WithMany("ProductSizes")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("XYZ.InventoryManagementSystem.Framework.Size", "Size")
-                        .WithMany("ProductSizes")
-                        .HasForeignKey("SizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("XYZ.InventoryManagementSystem.Framework.Product", b =>
                 {
                     b.HasOne("XYZ.InventoryManagementSystem.Framework.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("XYZ.InventoryManagementSystem.Framework.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
