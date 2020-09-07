@@ -28,6 +28,7 @@ namespace XYZ.InventoryManagementSystem.Framework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // For Product table
             modelBuilder.Entity<Product>().Property(p => p.Price)
                 .IsRequired();
             modelBuilder.Entity<Product>().Property(p => p.Qty)
@@ -83,11 +84,35 @@ namespace XYZ.InventoryManagementSystem.Framework
                 .WithMany(ps => ps.ProductStores)
                 .HasForeignKey(s => s.StoreId);
 
-            // Store 
+            // For Store table 
             modelBuilder.Entity<Store>()
                 .Property(s => s.Name)
                 .IsRequired();
             base.OnModelCreating(modelBuilder);
+
+            // For Order table
+            modelBuilder.Entity<Order>()
+                .Property(n => n.Name)
+                .IsRequired();
+            modelBuilder.Entity<Order>()
+                .Property(a => a.Address)
+                .IsRequired();
+
+            modelBuilder.Entity<Order>()
+                .Property(a => a.Phone)
+                .IsRequired();
+
+            modelBuilder.Entity<Order>()
+                .Property(a => a.Qty)
+                .IsRequired();
+
+            modelBuilder.Entity<Order>()
+                .Property(a => a.Rate)
+                .IsRequired();
+
+            modelBuilder.Entity<Order>()
+                .Property(a => a.Amount)
+                .IsRequired();
         }
 
         public DbSet<Brand> Brands { get; set; }
@@ -98,5 +123,6 @@ namespace XYZ.InventoryManagementSystem.Framework
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
