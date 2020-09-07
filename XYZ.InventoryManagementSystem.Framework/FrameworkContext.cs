@@ -27,6 +27,16 @@ namespace XYZ.InventoryManagementSystem.Framework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Product>().Property(p => p.Price)
+                .IsRequired();
+            modelBuilder.Entity<Product>().Property(p => p.Qty)
+                .IsRequired();
+            modelBuilder.Entity<Product>().Property(p => p.Description)
+                .IsRequired();
+
+            
+
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -37,5 +47,6 @@ namespace XYZ.InventoryManagementSystem.Framework
         public DbSet<Color> Colors { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
