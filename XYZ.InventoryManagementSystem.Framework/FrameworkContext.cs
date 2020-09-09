@@ -92,7 +92,7 @@ namespace XYZ.InventoryManagementSystem.Framework
 
             // For Order table
             modelBuilder.Entity<Order>()
-                .Property(n => n.Name)
+                .Property(n => n.ProductName)
                 .IsRequired();
             modelBuilder.Entity<Order>()
                 .Property(a => a.Address)
@@ -101,6 +101,10 @@ namespace XYZ.InventoryManagementSystem.Framework
             modelBuilder.Entity<Order>()
                 .Property(a => a.Phone)
                 .IsRequired();
+
+            modelBuilder.Entity<Order>()
+               .Property(a => a.CustomerName)
+               .IsRequired();
 
             modelBuilder.Entity<Order>()
                 .Property(a => a.Qty)
@@ -112,6 +116,10 @@ namespace XYZ.InventoryManagementSystem.Framework
 
             modelBuilder.Entity<Order>()
                 .Property(a => a.Amount)
+                .IsRequired();
+
+            modelBuilder.Entity<Order>()
+                .Property(a => a.NetAmount)
                 .IsRequired();
         }
 
