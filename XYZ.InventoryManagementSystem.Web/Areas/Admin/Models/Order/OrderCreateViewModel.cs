@@ -24,10 +24,11 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.Order
         [Display(Name = "Product")]
         public string ProductName { get; set; }
 
-        [Required(ErrorMessage = "This filed is required.")]
-        public int Qty { get; set; }
+        [Required(ErrorMessage = "*")]
+        [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString ="{0:C}")]
+        public int? Qty { get; set; }
 
-        [Required(ErrorMessage = "This filed is required.")]
+        [Required(ErrorMessage = "*")]
         public decimal Rate { get; set; }
 
         public decimal Amount { get; set; }

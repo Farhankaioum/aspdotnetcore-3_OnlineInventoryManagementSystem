@@ -47,7 +47,7 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
                     Address = vmModel.Address,
                     Phone = vmModel.Phone,
                     ProductName = vmModel.ProductName,
-                    Qty = vmModel.Qty,
+                    Qty = vmModel.Qty.Value,
                     Rate = vmModel.Rate,
                     Amount = vmModel.Amount,
                     GrossAmount = vmModel.GrossAmount,

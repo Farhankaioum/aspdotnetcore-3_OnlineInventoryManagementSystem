@@ -48,18 +48,21 @@
                     <select asp-for="ProductName" asp-items="@(new SelectList(Model.ProductsName, "Name", "Name"))" class="form-control">
                         <option value="">Select</option>
                     </select>
+                    <span class="text-danger" asp-validation-for="ProductName"></span>
                 </div>
             </div>
             <div class="col-md-1">
                 <div class="form-group">
                     <label asp-for="Qty"></label>
                     <input asp-for="Qty" class="form-control" />
+                    <span class="text-danger" asp-validation-for="Qty"></span>
                 </div>
             </div>
             <div class="col-md-1">
                 <div class="form-group">
                     <label asp-for="Rate"></label>
-                    <input asp-for="Rate" class="form-control" onblur="Calculate()"/>
+                    <input asp-for="Rate" class="form-control" onblur="Calculate()" />
+                    <span class="text-danger" asp-validation-for="Rate"></span>
                 </div>
             </div>
             <div class="col-md-3">
