@@ -1,34 +1,43 @@
-﻿@model List<CategoryIndexViewModel>
+﻿@model CategoryIndexViewModel
 @{
-    
+
 }
 
-<h2>Category Index Page</h2>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header ml-3">
+        <h2>All Category </h2>
+        <a asp-action="Create" asp-controller="Category" asp-area="Admin" class="btn btn-info float-right mr-5 mb-2">Create New</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            @foreach (var brand in Model)
-            {
-                var status = brand.Status ? "Active" : "Inactive";
-                <td>@brand.Name</td>
-                <td>@status</td>
-                <td>
-                    <a asp-action="Edit" asp-route-Id="@brand.Id" class="btn btn-primary">Edit</a>
-                    <form method="post" asp-action="Delete" asp-route-id="@brand.Id">
-                        <button type="submit"  onclick="confirm()">Delete</button>
-                    </form>
+                @foreach (var brand in Model.Categories)
+                {
+                    <tr>
+                        @{
+                            var status = brand.Status ? "Active" : "Inactive";
+                        }
+                        <td>@brand.Name</td>
+                        <td>@status</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-Id="@brand.Id" class="btn btn-primary float-left mr-2">Edit</a>
+                            <form method="post" asp-action="Delete" asp-route-id="@brand.Id">
+                                <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</button>
+                            </form>
 
-                </td>
-            }
-        </tr>
-    </tbody>
-   
-</table>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+</div>

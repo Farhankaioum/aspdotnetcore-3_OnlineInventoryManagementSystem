@@ -19,26 +19,18 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var brands = _context.Categories.ToList();
-            var listOfBrands = new List<CategoryIndexViewModel>();
 
-            foreach (var brand in brands)
-            {
-                var b = new CategoryIndexViewModel
-                {
-                    Id = brand.Id,
-                    Name = brand.Name,
-                    Status = brand.Status
-                };
+            var model = new CategoryIndexViewModel();
+            model.Categories = brands;
 
-                listOfBrands.Add(b);
-            }
-            return View(listOfBrands);
+            return View(model);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var model = new CategoryViewModel();
+            return View(model);
         }
 
         [HttpPost]
@@ -59,7 +51,7 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View();
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -93,7 +85,7 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View();
+            return View(viewModel);
         }
 
         [HttpPost]

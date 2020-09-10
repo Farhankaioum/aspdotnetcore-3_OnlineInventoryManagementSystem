@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.Order
 {
-    public class OrderCreateViewModel
+    public class OrderCreateViewModel : AdminBaseModel
     {
         [Required(ErrorMessage ="This filed is required.")]
         [Display(Name ="Customer Name")]

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using XYZ.InventoryManagementSystem.Framework;
 using XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.Brand;
 
@@ -15,32 +14,24 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
 
         public BrandController(FrameworkContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            var brands = _context.Brands.ToList();
-            var listOfBrands = new List<BrandIndexViewModel>();
+            var brands = _context.Brands.AsNoTracking().ToList();
 
-            foreach (var brand in brands)
-            {
-                var b = new BrandIndexViewModel
-                {
-                    Id = brand.Id,
-                    Name = brand.Name,
-                    Status = brand.Status
-                };
+            var model = new BrandIndexViewModel();
+            model.Brands = brands;
 
-                listOfBrands.Add(b);
-            }
-            return View(listOfBrands);
+            return View(model);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var model = new BrandViewModel();
+            return View(model);
         }
 
         [HttpPost]
@@ -60,7 +51,7 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View();
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -94,7 +85,7 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View();
+            return View(viewModel);
         }
 
         [HttpPost]

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using XYZ.InventoryManagementSystem.Framework;
+using XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.StoreViewModel;
 
 namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
 {
@@ -16,13 +17,19 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Stores.ToList());
+            var allStores = _context.Stores.ToList();
+            var model = new StoreIndexViewModel
+            {
+                Stores = allStores
+            };
+            return View(model);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new Store());
+            var model = new StoreViewModel();
+            return View(model);
         }
 
         [HttpPost]
@@ -33,7 +40,14 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
             {
                 _context.Stores.Add(store);
                 _context.SaveChanges();
-                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "Index", _context.Stores.ToList())});
+
+                var allStores = _context.Stores.ToList();
+                var model = new StoreIndexViewModel
+                {
+                    Stores = allStores
+                };
+
+                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "Index", model) });
             }
 
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "Edit", store)});
@@ -44,25 +58,32 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
         {
             var existingStore = _context.Stores.FirstOrDefault(s => s.Id == id);
 
-            return View(existingStore);
+            var model = new StoreViewModel
+            {
+                Id = existingStore.Id,
+                Name = existingStore.Name,
+                Status = existingStore.Status
+            };
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Store store)
+        public IActionResult Edit(StoreViewModel vmStore)
         {
             if (ModelState.IsValid)
             {
-                var existingStore = _context.Stores.FirstOrDefault(s => s.Id == store.Id);
-                existingStore.Name = store.Name;
-                existingStore.Status = store.Status;
+                var existingStore = _context.Stores.FirstOrDefault(s => s.Id == vmStore.Id);
+                existingStore.Name = vmStore.Name;
+                existingStore.Status = vmStore.Status;
 
                 _context.Stores.Update(existingStore);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
 
-            return View();
+            return View(vmStore);
         }
 
         [HttpPost]

@@ -8,7 +8,7 @@ using Size = XYZ.InventoryManagementSystem.Framework.Size;
 
 namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.Product
 {
-    public class ProductAddViewModel
+    public class ProductAddViewModel : AdminBaseModel
     {
         [Required]
         public string Name { get; set; }

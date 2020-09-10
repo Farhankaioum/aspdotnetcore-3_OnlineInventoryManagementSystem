@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.Category
 {
-    public class CategoryViewModel
+    public class CategoryViewModel : AdminBaseModel
     {
         public int Id { get; set; }
 

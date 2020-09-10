@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.Category
 {
-    public class CategoryIndexViewModel
+    public class CategoryIndexViewModel : AdminBaseModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool Status { get; set; }
+        public List<XYZ.InventoryManagementSystem.Framework.Category> Categories { get; set; }
     }
 }
