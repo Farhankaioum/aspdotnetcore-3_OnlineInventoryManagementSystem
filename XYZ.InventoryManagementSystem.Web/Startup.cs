@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Autofac;
 using XYZ.InventoryManagementSystem.Framework;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace XYZ.InventoryManagementSystem.Web
 {
@@ -49,11 +51,21 @@ namespace XYZ.InventoryManagementSystem.Web
             services.AddDbContext<FrameworkContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>( options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
 
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options => {
+                
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));// Globally authenticate users
+
+            });
             services.AddRazorPages();
             services.AddOptions();
         }
