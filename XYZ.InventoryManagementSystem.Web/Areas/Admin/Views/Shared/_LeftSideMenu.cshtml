@@ -110,13 +110,13 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a asp-area="Admin" asp-controller="Product" asp-action="Create" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Add Product</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Manage Product</p>
                     </a>
@@ -134,7 +134,13 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a asp-area="Admin" asp-controller="Order" asp-action="Create" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add Order</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Manage Order</p>
                     </a>
@@ -151,7 +157,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav-link">
+            <a asp-area="Admin" asp-controller="Company" asp-action="Edit" asp-route-id="1" class="nav-link">
                 <i class="nav-icon fas fa-box"></i>
                 <p>
                     Company

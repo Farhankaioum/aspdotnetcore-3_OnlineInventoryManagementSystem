@@ -2,6 +2,7 @@
 using System.Linq;
 using XYZ.InventoryManagementSystem.Framework;
 using XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.Order;
+using XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.OrderViewModel;
 
 namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
 {
@@ -18,7 +19,12 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var allOrder = _context.Orders.ToList();
-            return View(allOrder);
+
+            var model = new OrderIndexViewModel
+            {
+                Orders = allOrder
+            };
+            return View(model);
         }
 
       [HttpGet]

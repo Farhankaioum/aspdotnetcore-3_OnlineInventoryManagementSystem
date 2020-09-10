@@ -1,151 +1,162 @@
 ﻿@model XYZ.InventoryManagementSystem.Web.Areas.Admin.Models.Order.OrderCreateViewModel
 
 @{
-    Layout = null;
 }
-<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-<nav class="navbar navbar-expand-lg navbar-light" style="background:#999">
-    <span class="navbar-brand font-weight-bold text-dark">Manage <span class="font-weight-normal text-white ml-2">Orders</span> </span>
-</nav>
-<div class="container">
-    <h3 class="mt-2 mb-4">Add Order</h3>
 
-    <form method="post" asp-action="Create" class="mt-3">
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="Name"></label>
-            </div>
-            <div class="col-md-4">
-                <input asp-for="Name" class="form-control" />
-                <span class="text-danger" asp-validation-for="Name"></span>
-            </div>
-        </div>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header ml-3">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background:#999">
+            <span class="navbar-brand font-weight-bold text-dark">Manage <span class="font-weight-normal text-white ml-2">Orders</span> </span>
+        </nav>
+        <div class="container">
+            <h3 class="mt-2 mb-4">Add Order</h3>
 
-        <div class="row mt-2">
-            <div class="col-md-2">
-                <label asp-for="Address"></label>
-            </div>
-            <div class="col-md-4">
-                <input asp-for="Address" class="form-control" />
-                <span class="text-danger" asp-validation-for="Address"></span>
-            </div>
-        </div>
-
-        <div class="row mt-2">
-            <div class="col-md-2">
-                <label asp-for="Phone"></label>
-            </div>
-            <div class="col-md-4">
-                <input asp-for="Phone" class="form-control" />
-                <span class="text-danger" asp-validation-for="Phone"></span>
-            </div>
-        </div>
-
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label asp-for="ProductName"></label>
-                    <select asp-for="ProductName" asp-items="@(new SelectList(Model.ProductsName, "Name", "Name"))" class="form-control">
-                        <option value="">Select</option>
-                    </select>
-                    <span class="text-danger" asp-validation-for="ProductName"></span>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <div class="form-group">
-                    <label asp-for="Qty"></label>
-                    <input asp-for="Qty" class="form-control" />
-                    <span class="text-danger" asp-validation-for="Qty"></span>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <div class="form-group">
-                    <label asp-for="Rate"></label>
-                    <input asp-for="Rate" class="form-control" onblur="Calculate()" />
-                    <span class="text-danger" asp-validation-for="Rate"></span>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label asp-for="Amount"></label>
-                    <input asp-for="Amount" class="form-control" />
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-end">
-            <div class="col-md-6 mt-3">
-
-                <div class="row mt-2">
-                    <div class="col-md-3">
-                        <label asp-for="GrossAmount"></label>
+            <form method="post" asp-action="Create" class="mt-3">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label asp-for="Name"></label>
                     </div>
-                    <div class="col-md-8">
-                        <input asp-for="GrossAmount" class="form-control" />
+                    <div class="col-md-4">
+                        <input asp-for="Name" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Name"></span>
                     </div>
                 </div>
 
                 <div class="row mt-2">
-                    <div class="col-md-3">
-                        <label asp-for="Vat">Vat @Model.VatValue%</label>
+                    <div class="col-md-2">
+                        <label asp-for="Address"></label>
                     </div>
-                    <div class="col-md-8">
-                        <input asp-for="Vat" class="form-control" />
-                    </div>
-                    <input type="hidden" asp-for="VatValue"/>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-md-3">
-                        <label asp-for="Discount"></label>
-                    </div>
-                    <div class="col-md-8">
-                        <input asp-for="Discount" class="form-control" placeholder="Discount" onblur="CalculateDiscount()"/>
+                    <div class="col-md-4">
+                        <input asp-for="Address" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Address"></span>
                     </div>
                 </div>
 
                 <div class="row mt-2">
-                    <div class="col-md-3">
-                        <label asp-for="NetAmount"></label>
+                    <div class="col-md-2">
+                        <label asp-for="Phone"></label>
                     </div>
-                    <div class="col-md-8">
-                        <input asp-for="NetAmount" class="form-control" />
+                    <div class="col-md-4">
+                        <input asp-for="Phone" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Phone"></span>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="mt-3">
-            <button type="submit" class="btn btn-primary pr-3">Create Order</button>
-            <a asp-action="Index" class="btn text-dark" style="background:yellow;">Back</a>
-        </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ProductName"></label>
+                            <select asp-for="ProductName" asp-items="@(new SelectList(Model.ProductsName, "Name", "Name"))" class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="ProductName"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label asp-for="Qty"></label>
+                            <input asp-for="Qty" class="form-control" />
+                            <span class="text-danger" asp-validation-for="Qty"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label asp-for="Rate"></label>
+                            <input asp-for="Rate" class="form-control" onblur="Calculate()" />
+                            <span class="text-danger" asp-validation-for="Rate"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="Amount"></label>
+                            <input asp-for="Amount" class="form-control" />
+                        </div>
+                    </div>
+                </div>
 
-    </form>
+                <div class="row justify-content-end">
+                    <div class="col-md-6 mt-3">
+
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label asp-for="GrossAmount"></label>
+                            </div>
+                            <div class="col-md-8">
+                                <input asp-for="GrossAmount" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label asp-for="Vat">Vat @Model.VatValue%</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input asp-for="Vat" class="form-control" />
+                            </div>
+                            <input type="hidden" asp-for="VatValue" />
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label asp-for="Discount"></label>
+                            </div>
+                            <div class="col-md-8">
+                                <input asp-for="Discount" class="form-control" placeholder="Discount" onblur="CalculateDiscount()" />
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label asp-for="NetAmount"></label>
+                            </div>
+                            <div class="col-md-8">
+                                <input asp-for="NetAmount" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary pr-3">Create Order</button>
+                    <a asp-action="Index" class="btn text-dark" style="background:yellow;">Back</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
 </div>
-<script>
-    var totalAmount = 0;
-    function Calculate() {
-        var rate = document.getElementById('Rate').value;
-        var quantity = document.getElementById('Qty').value;
 
-         totalAmount = (rate * quantity);
+@section Script1{ 
+    
+    <script>
+        var totalAmount = 0;
+        function Calculate() {
+            var rate = document.getElementById('Rate').value;
+            var quantity = document.getElementById('Qty').value;
 
-        document.getElementById('Amount').value = totalAmount
-        document.getElementById('GrossAmount').value = totalAmount;
+            totalAmount = (rate * quantity);
 
-        var vat = document.getElementById('VatValue').value;
-        var vatAmount = (totalAmount / 100) * vat; 
+            document.getElementById('Amount').value = totalAmount
+            document.getElementById('GrossAmount').value = totalAmount;
 
-        document.getElementById('Vat').value = vatAmount;
+            var vat = document.getElementById('VatValue').value;
+            var vatAmount = (totalAmount / 100) * vat;
 
-        document.getElementById('NetAmount').value = totalAmount;
+            document.getElementById('Vat').value = vatAmount;
 
-    }
+            document.getElementById('NetAmount').value = totalAmount;
 
-    function CalculateDiscount() {
+        }
 
-        var discount = document.getElementById('Discount').value;
-        var netAmount = totalAmount - ((totalAmount / 100) * discount);
-        document.getElementById('NetAmount').value = netAmount;
-    }
-</script>
+        function CalculateDiscount() {
+
+            var discount = document.getElementById('Discount').value;
+            var netAmount = totalAmount - ((totalAmount / 100) * discount);
+            document.getElementById('NetAmount').value = netAmount;
+        }
+    </script>
+
+}
+
+

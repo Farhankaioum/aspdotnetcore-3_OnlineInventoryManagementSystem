@@ -30,7 +30,12 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
                     .ThenInclude(s => s.Store)
                 .ToList();
 
-            return View(products);
+            var model = new ProductIndexViewModel
+            {
+                Products = products
+            };
+
+            return View(model);
         }
 
         [HttpGet]

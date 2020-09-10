@@ -1,70 +1,77 @@
-﻿@model List<XYZ.InventoryManagementSystem.Framework.Product>
+﻿@model ProductIndexViewModel
 
 @{
 
 }
 
-@if(Model == null)
-{
-    <h2>No product available now!..</h2>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <td>Price</td>
-                <td>Quantity</td>
-                <td>Description</td>
-                <td>Available</td>
-                <td>Brand</td>
-                <td>Category</td>
-                <td>Colors</td>
-                <td>Sizes</td>
-                <td>Stores</td>
-                <td>Action</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in Model)
-            {
-                var available = product.Available ? "Available" : "Not Available";
-            <tr>
-                <td>@product.Price</td>
-                <td>@product.Qty</td>
-                <td>@product.Description</td>
-                <td>@available</td>
-                <td>@product.Brand.Name</td>
-                <td>@product.Category.Name</td>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header ml-3">
 
-                <td>
-                    @foreach (var color in product.ProductColor)
+        @if (Model.Products.Count <= 0)
+        {
+            <h2>No product available now!..</h2>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Description</td>
+                        <td>Available</td>
+                        <td>Brand</td>
+                        <td>Category</td>
+                        <td>Colors</td>
+                        <td>Sizes</td>
+                        <td>Stores</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
                     {
-                    <span>@color.Color.Name, </span>
-                    }                       
-                </td>
+                        var available = product.Available ? "Available" : "Not Available";
+                        <tr>
+                            <td>@product.Price</td>
+                            <td>@product.Qty</td>
+                            <td>@product.Description</td>
+                            <td>@available</td>
+                            <td>@product.Brand.Name</td>
+                            <td>@product.Category.Name</td>
 
-                <td>
-                    @foreach (var size in product.ProductSizes)
-                     {
-                        <span>@size.Size.Name, </span> 
-                     }
-                 </td>
+                            <td>
+                                @foreach (var color in product.ProductColor)
+                                {
+                                    <span>@color.Color.Name, </span>
+                                }
+                            </td>
 
-                <td>
-                    @foreach (var store in product.ProductStores)
-                    {
-                        <span>@store.Store.Name, </span>
+                            <td>
+                                @foreach (var size in product.ProductSizes)
+                                {
+                                    <span>@size.Size.Name, </span>
+                                }
+                            </td>
+
+                            <td>
+                                @foreach (var store in product.ProductStores)
+                                {
+                                    <span>@store.Store.Name, </span>
+                                }
+                            </td>
+
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-info">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
                     }
-                </td>
+                </tbody>
+            </table>
+        }
 
-
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-info">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-info">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+    </div>
+</div>

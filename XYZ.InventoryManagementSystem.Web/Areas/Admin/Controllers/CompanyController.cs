@@ -67,7 +67,7 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
 
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction();
+                return View(new CompanyEditViewModel());
             }
 
             return View(model);
