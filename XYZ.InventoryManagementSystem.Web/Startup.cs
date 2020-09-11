@@ -104,6 +104,9 @@ namespace XYZ.InventoryManagementSystem.Web
                    areaName:"Admin",
                   pattern: "{controller=Dashboard}/{action=Index}/{id?}");
 
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action}/{id?}");
             });
         }
     }

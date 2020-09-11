@@ -42,3 +42,8 @@ jQueryAjaxPost = (form) => {
     // to prevent default form submit event
     return false;
 }
+
+//for login page
+$('.message a').click(function () {
+    $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+});
