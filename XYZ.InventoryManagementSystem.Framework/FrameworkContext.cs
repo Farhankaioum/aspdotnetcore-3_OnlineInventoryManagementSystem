@@ -132,5 +132,6 @@ namespace XYZ.InventoryManagementSystem.Framework
         public DbSet<Company> Companies { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Group> Groups { get; set; } 
     }
 }
