@@ -1,0 +1,58 @@
+﻿@model GroupIndexViewModel
+@{
+
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header ml-3">
+        <h2>All Groups</h2>
+
+        <a onclick="showPopUpDialog('@Url.Action("Create", "Group", null, Context.Request.Scheme)', 'New Group')"
+           class="btn btn-info float-right mr-5 mb-2 text-white"><i class="fas fa-random"></i> Create New
+        </a>
+
+        @if (Model.Groups.Count <= 0)
+        {
+            <h2 class="text-danger mt-4">No Group Found</h2>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var group in Model.Groups)
+                    {
+                        <tr>
+                            @{
+                                var status = group.Status ? "Active" : "Inactive";
+                            }
+                            <td>@group.Name</td>
+                            <td>@status</td>
+                            <td>
+                                <a  onclick="showPopUpDialog('@Url.Action("Edit", "Group", new { id = group.Id}, Context.Request.Scheme)', 'Update Group')"
+                                   class="btn btn-primary float-left mr-2 text-white">Edit
+                                </a>
+                                <form method="post" asp-action="Delete" asp-route-id="@group.Id">
+                                    <button type="submit" onclick="return confirm('Are you sure')" class="btn btn-danger">Delete</button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        }
+
+    </div>
+</div>
+<script src="~/js/site.js"></script>

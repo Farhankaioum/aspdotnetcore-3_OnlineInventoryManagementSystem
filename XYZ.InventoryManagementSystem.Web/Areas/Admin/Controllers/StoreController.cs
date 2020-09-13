@@ -42,6 +42,7 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Controllers
                 _context.SaveChanges();
 
                 var allStores = _context.Stores.ToList();
+
                 var model = new StoreIndexViewModel
                 {
                     Stores = allStores

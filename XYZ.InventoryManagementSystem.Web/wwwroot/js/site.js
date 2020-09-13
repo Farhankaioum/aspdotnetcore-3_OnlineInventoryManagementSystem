@@ -43,6 +43,20 @@ jQueryAjaxPost = (form) => {
     return false;
 }
 
+// For group pop up dialog
+ showPopUpDialog = (url, title) => {
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (res) {
+            $('#form-modal .modal-body').html(res);
+            $('#form-modal .modal-title').html(title);
+            $('#form-modal').modal('show');
+        }
+    });
+}
+
+
 //for login page
 $('.message a').click(function () {
     $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");

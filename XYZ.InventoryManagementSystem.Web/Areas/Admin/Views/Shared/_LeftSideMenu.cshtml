@@ -9,7 +9,7 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
-        with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview menu-open">
             <a asp-action="Index" asp-controller="Dashboard" asp-area="Admin" class="nav-link @Url.MakeActiveClass("Dashboard", "Index")">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -42,28 +42,15 @@
             </ul>
         </li>
 
-        <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-object-group"></i>
+        
+
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="Group" asp-action="Index" class="nav-link @Url.MakeActiveClass("Group", "Index")">
+                <i class="nav-icon fas fa-link"></i>
                 <p>
                     Groups
-                    <i class="fas fa-angle-left right"></i>
                 </p>
             </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Manage Groups</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Add Groups</p>
-                    </a>
-                </li>
-            </ul>
         </li>
 
         <li class="nav-item">
