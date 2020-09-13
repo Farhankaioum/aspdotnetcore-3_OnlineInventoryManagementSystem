@@ -7,6 +7,6 @@ namespace XYZ.InventoryManagementSystem.Web.Areas.Admin.Models
 {
     public class AdminBaseModel
     {
-        public MenuModel MenuModel { get; set; }
+        public MenuModel MenuModel { get; set; } 
     }
 }

@@ -1,0 +1,42 @@
+﻿@model AccountIndexPageModel
+
+@{
+    ViewData["Title"] = "User List";
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header ml-3">
+        @if (Model.Users.Count == 0)
+        {
+            <h2>No users in this moment.</h2>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Email</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>@user.Email</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-Id="@user.Id" class="btn btn-primary float-left mr-2">Edit</a>
+                                <form method="post" asp-action="Delete" asp-route-id="@user.Id">
+                                    <button type="submit" onclick="return confirm('Are you sure, If delete not undone')" class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

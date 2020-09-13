@@ -10,6 +10,7 @@ using Autofac;
 using XYZ.InventoryManagementSystem.Framework;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace XYZ.InventoryManagementSystem.Web
 {
@@ -53,12 +54,10 @@ namespace XYZ.InventoryManagementSystem.Web
 
             services.AddIdentity<IdentityUser, IdentityRole>( options =>
             {
-                options.SignIn.RequireConfirmedAccount = true;
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders()
-                .AddDefaultUI();
-
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders()
+            .AddDefaultUI();
 
             services.AddControllersWithViews(options => {
                 
