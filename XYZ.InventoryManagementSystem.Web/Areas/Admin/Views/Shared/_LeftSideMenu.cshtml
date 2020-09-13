@@ -1,15 +1,17 @@
-﻿@model MenuModel
+﻿@using static XYZ.InventoryManagementSystem.Web.HelpersExtension.NavigationIndicatorHelper
+@model MenuModel
+
 
 @{
 
- }
+}
 
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+        with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview menu-open">
-            <a asp-action="Index" asp-controller="Dashboard" asp-area="Admin" class="nav-link active">
+            <a asp-action="Index" asp-controller="Dashboard" asp-area="Admin" class="nav-link @Url.MakeActiveClass("Dashboard", "Index")">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -17,7 +19,7 @@
             </a>
         </li>
         <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link @Url.MakeActiveClass("Account", "Index") @Url.MakeActiveClass("Account", "Register")">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Users
@@ -65,7 +67,7 @@
         </li>
 
         <li class="nav-item">
-            <a asp-area="Admin" asp-controller="Brand" asp-action="Index" class="nav-link">
+            <a asp-area="Admin" asp-controller="Brand" asp-action="Index" class="nav-link @Url.MakeActiveClass("Brand", "Index")">
                 <i class="nav-icon fas fa-link"></i>
                 <p>
                     Brands
@@ -74,7 +76,7 @@
         </li>
 
         <li class="nav-item">
-            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav-link">
+            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav-link @Url.MakeActiveClass("Category", "Index")">
                 <i class="nav-icon fas fa-box"></i>
                 <p>
                     Category
@@ -83,7 +85,7 @@
         </li>
 
         <li class="nav-item">
-            <a asp-area="Admin" asp-controller="Store" asp-action="Index" class="nav-link">
+            <a asp-area="Admin" asp-controller="Store" asp-action="Index" class="nav-link @Url.MakeActiveClass("Store", "Index")">
                 <i class="nav-icon fas fa-box"></i>
                 <p>
                     Stores
@@ -92,7 +94,7 @@
         </li>
 
         <li class="nav-item">
-            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav-link">
+            <a asp-area="Admin" asp-controller="Attribute" asp-action="Index" class="nav-link @Url.MakeActiveClass("Attribute", "Index")">
                 <i class="nav-icon fas fa-box"></i>
                 <p>
                     Attribute
@@ -101,7 +103,7 @@
         </li>
 
         <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link @Url.MakeActiveClass("Product", "Index") @Url.MakeActiveClass("Product", "Create")">
                 <i class="nav-icon fas fa-object-group"></i>
                 <p>
                     Products
@@ -125,7 +127,7 @@
         </li>
 
         <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link @Url.MakeActiveClass("Order", "Index") @Url.MakeActiveClass("Order", "Create")">
                 <i class="nav-icon fas fa-object-group"></i>
                 <p>
                     Orders
@@ -157,7 +159,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a asp-area="Admin" asp-controller="Company" asp-action="Edit" asp-route-id="1" class="nav-link">
+            <a asp-area="Admin" asp-controller="Company" asp-action="Edit" asp-route-id="1" class="nav-link @Url.MakeActiveClass("Company", "Index")">
                 <i class="nav-icon fas fa-box"></i>
                 <p>
                     Company
